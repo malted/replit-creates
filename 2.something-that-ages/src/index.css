@@ -1,0 +1,73 @@
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: lightgreen;
+}
+
+@keyframes print {
+    from { top: 6vh }
+    to { top: 50vh }
+}
+@keyframes develop {
+    from { filter: contrast(0) }
+    to { filter: contrast(1) }
+}
+@keyframes fade {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+@keyframes slide {
+    from { transform: translateX(0) }
+    to { transform: translateX(80vw) }
+}
+
+.camera {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50vh;
+}
+#camera-base {
+    z-index: 4;
+}
+#camera-mask {
+    z-index: 10;
+}
+#top-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20vh;
+    background-color: lightgreen;
+    z-index: 8;
+}
+
+#photograph, #aged-paper {
+    position: absolute;
+    top: 6vh;
+    left: 0;
+    right: 1.5vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 28vh;
+    filter: contrast(0);
+    z-index: 7;
+}
+.photograph-anim {
+    animation: print 1s 2s forwards, develop 2s 3s 1 forwards, slide 0.5s 8s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;;
+}
+
+
+#aged-paper {
+    opacity: 0;
+    filter: none;
+    z-index: 9;
+}
+.aged-paper-anim {
+    animation: print 1s 2s forwards, fade 5s 5s forwards, slide 0.5s 8s cubic-bezier(0.36, 0, 0.66, -0.56) forwards;;
+}
