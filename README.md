@@ -9,3 +9,8 @@ Day 1 - *Make the worst website possible*
 * [day1.creates2022.malted.dev](https://day1.creates2022.malted.dev)
 * [Repl](https://replit.com/@malted/day1-create2022?v=1)
 * [README](https://github.com/ma1ted/replit-creates/blob/main/1.the-worst-website-possible/README.md)
+
+Day 2 - *Create something that ages*
+* [day2.creates2022.malted.dev](https://day2.creates2022.malted.dev)
+* [Repl](https://replit.com/@malted/day2-create2022?v=1)
+* [README](https://github.com/ma1ted/replit-creates/blob/main/2.the-worst-website-possible/README.md)
