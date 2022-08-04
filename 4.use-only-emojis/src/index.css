@@ -1,0 +1,20 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #ffdd67;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.emoji {
+    width: 10vw;
+}
