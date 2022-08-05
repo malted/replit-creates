@@ -6,5 +6,3 @@ This website was built to be a pretty bad website. It's a React project, generat
 For my The Worst Website™, I not only tried to make it look shoddy and prove annoying and unpleasant to navigate, but also tried to make the tech stack The Worst™ too. I think I did a pretty good job in the couple of hours I spent on this. Overall, this was an interesting day 1 prompt. I bet I could name who came up with it too :)
 
 ![Site preview](cover.png)
-
-### [Twitter post](https://twitter.com/ma1ted)
