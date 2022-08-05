@@ -1,178 +1,180 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Write a story</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"); 
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>replit</title>
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap"); 
+            * {
+                font-family: "Roboto Slab";
+            }
+            
+            body {
+                color: black;
+                background-color: linen;
+            }
+            
+            #main {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                max-width: 70vw;
+                margin: auto;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            hr {
+                width: 30vw;
+            }
+            
+            #story:first-letter {
+                font-size: 200%;
+                line-height: 0;
+            }
+            
+            input, button {
+                background-color: rgba(255, 255, 255, 0.7);
+                border: 2px solid black;
+                width: fit-content;
+            }
+            
+            @keyframes blinker {
+                from { opacity: 0 }
+                to { opacity: 1 }
+            }
+            #next-word-placeholder {
+                opacity: 0.5;
+                letter-spacing: 0.2rem;
+                font-weight: bold;
+                animation: blinker 0.25s ease-out infinite alternate;
+            }
+            
+            .replit-auth-button {
+                background-color: rgba(255, 255, 255, 0.5);
+                border: 2px solid black;
+                padding: 0.5rem;
+                font-size: 1rem;
+            }
+        </style>
 
-        * {
-            font-family: "Roboto Slab";
-        }
-        
-        body {
-            color: black;
-            background-color: linen;
-        }
-        
-        #main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            max-width: 70vw;
-            margin: auto;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-        }
-        
-        hr {
-            width: 30vw;
-        }
-        
-        #story:first-letter {
-            font-size: 200%;
-            line-height: 0;
-        }
-        
-        input, button {
-            background-color: rgba(255, 255, 255, 0.7);
-            border: 2px solid black;
-            width: fit-content;
-        }
-        
-        @keyframes blinker {
-            from { opacity: 0 }
-            to { opacity: 1 }
-        }
-        #next-word-placeholder {
-            opacity: 0.5;
-            letter-spacing: 0.2rem;
-            font-weight: bold;
-            animation: blinker 0.25s ease-out infinite alternate;
-        }
-        
-        .replit-auth-button {
-            background-color: rgba(255, 255, 255, 0.5);
-            border: 2px solid black;
-            padding: 0.5rem;
-            font-size: 1rem;
-        }
-    </style>
+        <link href="//db.onlinewebfonts.com/c/ee370020af4cc38c4c8d7c96ae01dda8?family=Iwata+Kaisho" rel="stylesheet"
+            type="text/css" />
+    </head>
+    <body>
+        <section id="main">
+            <h1>Write a story.</h1>
+            <div id="subtitle">
+                <h3>What's the deal?</h3>
+                <p>Each user submits one word at a time to the story, before waiting for someone else to do the same, after
+                    which they can submit another word. When the story ends, it will be preserved in the state in which it
+                    ended forever.</p>
+            </div>
 
-    <link href="//db.onlinewebfonts.com/c/ee370020af4cc38c4c8d7c96ae01dda8?family=Iwata+Kaisho" rel="stylesheet"
-        type="text/css" />
-</head>
+            <hr />
 
-<body>
-    <section id="main">
-        <h1>Write a story.</h1>
-        <div id="subtitle">
-            <h3>What's the deal?</h3>
-            <p>Each user submits one word at a time to the story, before waiting for someone else to do the same, after
-                which they can submit another word. When the story ends, it will be preserved in the state in which it
-                ended forever.</p>
-        </div>
+            <p>
+                <span id="story">{{ story }}</span>
+                {% if not locked %}
+                    {% if user_id %}
+                        <span>
+                            <input type="text" id="next-word-input" />
+                            <button id="write-word-button">Write</button>
+                        </span>
+                    {% else %}
+                        <span id="next-word-placeholder">...</span>
+                    {%endif %}
+                {% endif %}
+            </p>
 
-        <hr />
-
-        <p id="story">
-            Once upon a time,
-            {% if user_id %}
-            <span>
-                <input type="text" id="next-word-input" />
-                <button id="write-word-button">Write</button>
-            </span>
+            {% if locked %}
+                <h3>The story has ended. The last author was {{ last_author_user_name }}</h3>
             {% else %}
-            <span id="next-word-placeholder">...</span>
-            {%endif %}
-        </p>
+                <h3>The last author was {{ last_author_user_name }}</h3>
+        
+                {% if user_id %}
+                    <h3>Hello, {{ user_name }}!</h3>
+                {% else %}
+                    <h3>Log in to write the next word of the story!</h3>
+                    <script authed="location.reload()">
+                    ;(function() {
+                        // Util version
+                        var selem = document.currentScript;
+                        
+                        var button = document.createElement("button");
+                        button.className = "replit-auth-button";
+                        button.textContent = "Login With Replit";
+                        
+                        if (location.protocol !== "https:") {
+                            var err = document.createElement("div");
+                            err.className = "replit-auth-error";
+                            err.textContent = "Replit auth requires https!";
+                            selem.parentNode.insertBefore(err, selem);
+                        }
+                        
+                        button.onclick = function() {
+                            // var authWindow = window.open("https://repl.it/auth_with_repl_site?domain=" + location.host)
+                            window.addEventListener("message", authComplete);
+                            
+                            var h = 500;
+                            var w = 350;
+                            var left = (screen.width / 2) - ( w / 2);
+                            var top = (screen.height / 2) - (h / 2);
+                            
+                            var authWindow = window.open(
+                            
+                            "https://repl.it/auth_with_repl_site?domain="+location.host,
+                            "_blank",
+                            "modal =yes, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width="+w+", height="+h+", top="+top+", left="+left)
+                            
+                            function authComplete(e) {
+                                if (e.data !== "auth_complete") return;
+                            
+                                window.removeEventListener("message", authComplete);
+                                
+                                authWindow.close();
+                                if (selem.attributes.authed.value) {
+                                    eval(selem.attributes.authed.value);
+                                } else {
+                                    location.reload();
+                                }
+                            }
+                        }
+                        
+                        selem.parentNode.insertBefore(button, selem);
+                    })();
+                </script>
+                {% endif %}
+            {% endif %}
+        </section>
 
-        <h3>The last author was {{ last_author_user_name }}</h3>
+        <script>
+            window.onload = () => {
+                document.getElementById("next-word-input").value = ""
+            }
+        </script>
 
         {% if user_id %}
-        <h3>Hello, {{ user_name }}! ({{ user_id }})</h3>
-        {% else %}
-        <h3>Log in to write the next word of the story!</h3>
-        <script authed="location.reload()">
-            ;(function() {
-                // Util version
-                var selem = document.currentScript;
-                
-                var button = document.createElement("button");
-                button.className = "replit-auth-button";
-                button.textContent = "Login With Replit";
-                
-                if (location.protocol !== "https:") {
-                    var err = document.createElement("div");
-                    err.className = "replit-auth-error";
-                    err.textContent = "Replit auth requires https!";
-                    selem.parentNode.insertBefore(err, selem);
-                }
-                
-                button.onclick = function() {
-                    // var authWindow = window.open("https://repl.it/auth_with_repl_site?domain=" + location.host)
-                    window.addEventListener("message", authComplete);
-                    
-                    var h = 500;
-                    var w = 350;
-                    var left = (screen.width / 2) - ( w / 2);
-                    var top = (screen.height / 2) - (h / 2);
-                    
-                    var authWindow = window.open(
-                    
-                    "https://repl.it/auth_with_repl_site?domain="+location.host,
-                    "_blank",
-                    "modal =yes, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width="+w+", height="+h+", top="+top+", left="+left)
-                    
-                    function authComplete(e) {
-                        if (e.data !== "auth_complete") return;
-                    
-                        window.removeEventListener("message", authComplete);
-                        
-                        authWindow.close();
-                        if (selem.attributes.authed.value) {
-                            eval(selem.attributes.authed.value);
-                        } else {
-                            location.reload();
-                        }
+            <script>
+                document.getElementById("write-word-button").onclick = () => {
+                    console.log("write clicked!")
+                    const word = document.getElementById("next-word-input").value.trim();
+        
+                    if (word.includes(" ")) {
+                        alert("You may only submit one word at a time.");
+                        return;
+                    } else {
+                        fetch("https://day3.malted.repl.co/write/" + word, {mode: "no-cors"})
+                            .then(() => location.reload());
                     }
-                }
-                
-                selem.parentNode.insertBefore(button, selem);
-            })();
-        </script>
+                };
+            </script>
         {% endif %}
-    </section>
-
-    <script>
-        if (document.getElementById("write-word-button")) {
-            document.getElementById("write-word-button").onclick = () => {
-                const word = document.getElementById("next-word-input").value.trim();
-    
-                if (word.includes(" ")) {
-                    alert("You may only submit one word at a time.");
-                    return;
-                } else {
-                    fetch("https://day3.malted.repl.co/write/" + word, {mode: "no-cors"})
-                        .then(res => res.json())
-                        .then(json => {
-                            if (json.success) {
-                                document.getElementById("story").innerHTML += word
-                            }
-                        })
-                        .catch(err => {
-                            console.log(err);
-                        });
-                }
-            };
-        }
-    </script>
-</body>
-
+    </body>
 </html>
