@@ -6,11 +6,11 @@
 
 ## Prompts
 Day 1 - *Make the worst website possible*
-* [day1.creates2022.malted.dev](https://day1.creates2022.malted.dev)
+* [Site](https://day1-create2022.malted.repl.co)
 * [Repl](https://replit.com/@malted/day1-create2022?v=1)
-* [README](https://github.com/ma1ted/replit-creates/blob/main/1.the-worst-website-possible/README.md)
+* [README](https://github.com/ma1ted/replit-creates/tree/main/1.the-worst-website-possible#readme)
 
 Day 2 - *Create something that ages*
-* [day2.creates2022.malted.dev](https://day2.creates2022.malted.dev)
+* [Site](https://day2-create2022.malted.repl.co)
 * [Repl](https://replit.com/@malted/day2-create2022?v=1)
-* [README](https://github.com/ma1ted/replit-creates/blob/main/2.the-worst-website-possible/README.md)
+* [README](https://github.com/ma1ted/replit-creates/tree/main/2.something-that-ages#readme)
